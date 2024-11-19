@@ -1,0 +1,16 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      python: 3.11
+    build:
+    commands:
+      - sudo apt-get install zip -y
+      - zip -rj lambda1.zip cicd_pipeline_lambda_function_1/*
+      - zip -rj lambda2.zip cicd_pipeline_lambda_function_2/*
+  post_build:
+    commands:
+      - echo "Updating lambda Function..."
+      - aws lambda update-function-code --function-name cicd_pipeline_lambda_function_1 --zip-file fileb://lambda1.zip
+      - aws lambda update-function-code --function-name cicd_pipeline_lambda_function_2 --zip-file fileb://lambda2.zip
+      - echo "DONE!!"
