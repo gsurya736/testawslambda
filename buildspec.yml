@@ -6,8 +6,8 @@ phases:
     build:
     commands:
       - sudo apt-get install zip -y
-      - zip -rj lambda1.zip cicd_pipeline_lambda_function_1/*
-      - zip -rj lambda2.zip cicd_pipeline_lambda_function_2/*
+      - zip -r lambda1.zip lambdafunction1.py
+      - zip -r lambda2.zip lambdafunction2.py
   post_build:
     commands:
       - echo "Updating lambda Function..."
